@@ -11,11 +11,24 @@ public class Controller {
     @GetMapping(value = "/login")
     public ModelAndView login(Model model){
         ModelAndView mav = new ModelAndView();
-
-
-
         mav.setViewName("login");
         return mav;
     }
+
+
+    @GetMapping(value = "/register")
+    public ModelAndView register(Model model){
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("register");
+        return mav;
+    }
+
+    @GetMapping(value = "/recuperare")
+    public ModelAndView password(Model model){
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("password");
+        return mav;
+    }
+
 
 }
