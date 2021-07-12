@@ -31,8 +31,6 @@ public class Controller {
         return mav;
     }
 
-
-
     @GetMapping(value = "/grades")
     public ModelAndView viewGrades(Model model) {
         ModelAndView mav = new ModelAndView();
@@ -49,13 +47,43 @@ public class Controller {
         return mav;
     }
 
-    @GetMapping(value = "/home")
+    @GetMapping(value = "/index")
     public ModelAndView home(Model model){
         ModelAndView mav = new ModelAndView();
 
 
 
-        mav.setViewName("home");
+        mav.setViewName("index");
+        return mav;
+
+    }
+
+    @GetMapping(value = "/exams")
+    public ModelAndView exams(Model model){
+        ModelAndView mav = new ModelAndView();
+
+
+
+        mav.setViewName("exams");
+        return mav;
+
+    }
+
+    @GetMapping(value = "/courses")
+    public ModelAndView courses(Model model){
+        ModelAndView mav = new ModelAndView();
+
+        model.addAttribute("greetings", "My Sujects : ");
+
+        List<String> nameDiscList = List.of("Electronica Digitala", "PCLP", "Proiectarea Algoritmilor", "Informatica Aplicata");
+        model.addAttribute("nameDiscList", nameDiscList);
+
+        List<Discipline> discipline = dispSubjects();
+        model.addAttribute("discipline", discipline);
+
+
+        mav.setViewName("courses");
+
         return mav;
 
     }
@@ -141,8 +169,74 @@ public class Controller {
                 .departmentName("Tehnologia Informatiei")
                 .build();
 
-        return List.of(dispGrades1, dispGrades2, dispGrades3, dispGrades4, dispGrades5, dispGrades6, dispGrades7,dispGrades8 ,dispGrades9,dispGrades10);
+        return List.of(dispGrades1, dispGrades2, dispGrades3, dispGrades4, dispGrades5, dispGrades6, dispGrades7,dispGrades8
+                ,dispGrades9,dispGrades10);
     }
 
+    private List<Discipline> dispSubjects() {
+        Discipline dispSubjects1 = Discipline.builder()
+                .iD(001)
+                .numeDisc("Electronica Digitala")
+                .an("IV")
+                .credite(5)
+                .build();
+
+        Discipline dispSubjects2 = Discipline.builder()
+                .iD(2)
+                .numeDisc("Electronica Digitala")
+                .an("II")
+                .credite(4)
+                .build();
+        Discipline dispSubjects3 = Discipline.builder()
+                .iD(3)
+                .numeDisc("Electronica Digitala")
+                .an("II")
+                .credite(5)
+                .build();
+        Discipline dispSubjects4 = Discipline.builder()
+                .iD(4)
+                .numeDisc("Electronica Digitala")
+                .an("I")
+                .credite(6)
+                .build();
+        Discipline dispSubjects5 = Discipline.builder()
+                .iD(5)
+                .numeDisc("Electronica Digitala")
+                .an("V")
+                .credite(6)
+                .build();
+        Discipline dispSubjects6 = Discipline.builder()
+                .iD(6)
+                .numeDisc("Electronica Digitala")
+                .an("IV")
+                .credite(1)
+                .build();
+        Discipline dispSubjects7 = Discipline.builder()
+                .iD(7)
+                .numeDisc("Electronica Digitala")
+                .an("III")
+                .credite(4)
+                .build();
+        Discipline dispSubjects8 = Discipline.builder()
+                .iD(8)
+                .numeDisc("Electronica Digitala")
+                .an("I")
+                .credite(5)
+                .build();
+        Discipline dispSubjects9 = Discipline.builder()
+                .iD(9)
+                .numeDisc("Electronica Digitala")
+                .an("II")
+                .credite(7)
+                .build();
+        Discipline dispSubjects10 = Discipline.builder()
+                .iD(10)
+                .numeDisc("Electronica Digitala")
+                .an("VI")
+                .credite(3)
+                .build();
+        return List.of(dispSubjects1, dispSubjects2, dispSubjects3, dispSubjects4, dispSubjects5, dispSubjects6, dispSubjects7,
+                dispSubjects8, dispSubjects9, dispSubjects10);
+    }
 
 }
