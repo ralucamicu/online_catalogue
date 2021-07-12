@@ -21,7 +21,7 @@
     <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon.ico">
     <meta name="theme-color" content="#7952b3">
 
-    <link rel="stylesheet" type="text/css" media="all" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/sbadmin/css/styles.css}">
 
     <style>
       .bd-placeholder-img {
@@ -64,7 +64,7 @@
     <div class="d-flex flex-column flex-shrink-0 bg-light" style="width: 4.5rem;">
         <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
             <li class="nav-item">
-                <a href="#" class="nav-link active py-3 border-bottom" aria-current="page" title="Acasa" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="index" class="nav-link active py-3 border-bottom" aria-current="page" title="Acasa" data-bs-toggle="tooltip" data-bs-placement="right">
                     <svg class="bi" width="24" height="24" role="img" aria-label="Acasa"><use xlink:href="#home"/></svg>
                 </a>
             </li>
@@ -74,12 +74,12 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link py-3 border-bottom" title="Programare examene" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="exams" class="nav-link py-3 border-bottom" title="Programare examene" data-bs-toggle="tooltip" data-bs-placement="right">
                     <svg class="bi" width="24" height="24" role="img" aria-label="Programare examene"><use xlink:href="#table"/></svg>
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link py-3 border-bottom" title="Cursurile mele" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="courses" class="nav-link py-3 border-bottom" title="Cursurile mele" data-bs-toggle="tooltip" data-bs-placement="right">
                     <svg class="bi" width="24" height="24" role="img" aria-label="Cursurile mele"><use xlink:href="#grid"/></svg>
                 </a>
             </li>
@@ -97,10 +97,10 @@
                 </a>
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 link-secondary">Acasa</a></li>
-                    <li><a href="#" class="nav-link px-2 link-dark">Notele mele</a></li>
-                    <li><a href="#" class="nav-link px-2 link-dark">Cursurile mele</a></li>
-                    <li><a href="#" class="nav-link px-2 link-dark">Programare examene</a></li>
+                    <li><a href="index" class="nav-link px-2 link-secondary">Acasa</a></li>
+                    <li><a href="grades" class="nav-link px-2 link-dark">Notele mele</a></li>
+                    <li><a href="courses" class="nav-link px-2 link-dark">Cursurile mele</a></li>
+                    <li><a href="exams" class="nav-link px-2 link-dark">Programare examene</a></li>
                 </ul>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -109,13 +109,13 @@
 
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="http://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Download-Image.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                        <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                         <li><a class="dropdown-item" href="#">Setari</a></li>
                         <li><a class="dropdown-item" href="#">Profil</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        <li><a class="dropdown-item" href="login">Sign out</a></li>
                     </ul>
                 </div>
             </div>
@@ -127,18 +127,8 @@
     <div class="content" style="float:center">
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item active">Afisare note</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div><!-- /.container-fluid -->
-            </section>
+
+            <br><br>
 
             <!-- Grades Data Table -->
             <section class="content">
@@ -146,7 +136,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-header">
+                                <div class="card-header" style="float:center">
                                     <h3 class="card-title">Notele mele</h3>
                                 </div>
                                 <!-- /.card-header -->
@@ -189,8 +179,7 @@
     <!--  Main Content End  -->
 </div>
 
-<script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
-
+<script th:src="@{/sbadmin/js/scripts.js}"></script>
 
 </body>
 </html>
