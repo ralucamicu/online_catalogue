@@ -2,25 +2,73 @@ package com.example.online_catalogue.controller;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @org.springframework.stereotype.Controller
 public class Controller {
 
+    List<User> utilizatori = getUtilizatori();
+
+    private List<User> getUtilizatori (){
+        List<User> utilizatori = new ArrayList<>();
+        utilizatori.add(User.builder().nume("maroiu").prenume("alex").email("alex@mail.com").parola("pass").build());
+        return utilizatori;
+    }
 
     @GetMapping(value = "/login")
     public ModelAndView login(Model model) {
         ModelAndView mav = new ModelAndView();
+
+        User utilizator = new User();
+        model.addAttribute("user",utilizator);
+
         mav.setViewName("login");
+        return mav;
+    }
+
+    @PostMapping(value = "/submitLogin")
+    public ModelAndView submitLogin(@ModelAttribute User utilizator){
+        ModelAndView mav = new ModelAndView();
+
+        for(var user : utilizatori){
+           if(user.getParola().equals(utilizator.getParola()) && user.getEmail().equals(utilizator.getEmail())){
+               mav.setViewName("redirect:/index");
+           }
+           else{
+               mav.setViewName("redirect:/login");
+           }
+        }
+
         return mav;
     }
 
     @GetMapping(value = "/register")
     public ModelAndView register(Model model){
         ModelAndView mav = new ModelAndView();
+
+        User utilizator = User.builder().build();
+        model.addAttribute("utilizator",utilizator);
+
         mav.setViewName("register");
+        return mav;
+    }
+
+    @PostMapping(value = "/submitRegister")
+    public ModelAndView submitRegister(@ModelAttribute User utilizator){
+        ModelAndView mav = new ModelAndView();
+
+        if(utilizator.getParola().equals(utilizator.getCnfParola())) {
+            utilizatori.add(utilizator);
+            mav.setViewName("redirect:/login");
+        }
+        else{
+            mav.setViewName("redirect:/register");
+        }
         return mav;
     }
 
