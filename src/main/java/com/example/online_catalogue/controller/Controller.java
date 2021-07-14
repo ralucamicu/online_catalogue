@@ -13,6 +13,7 @@ import java.util.List;
 public class Controller {
 
     List<User> utilizatori = getUtilizatori();
+    List<Note> note = dispGrades();
 
     private List<User> getUtilizatori (){
         List<User> utilizatori = new ArrayList<>();
@@ -88,10 +89,31 @@ public class Controller {
         List<String> discNameList = List.of("Electronica Digitala", "PCLP", "Radiologie", "Informatica Aplicata");
         model.addAttribute("discNameList", discNameList);
 
-        List<Note> note = dispGrades();
         model.addAttribute("note", note);
 
         mav.setViewName("displayNote");
+        return mav;
+    }
+
+    @GetMapping(value = "/addNote")
+    public ModelAndView addNote(Model model){
+        ModelAndView mav = new ModelAndView();
+
+        Note nota = new Note();
+        model.addAttribute("nota",nota);
+
+        mav.setViewName("addNote");
+        return mav;
+    }
+
+    @PostMapping(value = "/submitNota")
+    public ModelAndView submitNota(@ModelAttribute Note nota){
+        ModelAndView mav = new ModelAndView();
+
+        nota.setId(note.size()+1);
+        note.add(nota);
+
+        mav.setViewName("redirect:/grades");
         return mav;
     }
 
@@ -137,6 +159,7 @@ public class Controller {
     }
 
     private List<Note> dispGrades() {
+        List<Note> note = new ArrayList<>();
         Note dispGrades1 = Note.builder()
                 .id(001)
                 .discName("Electronica Digitala")
@@ -217,8 +240,19 @@ public class Controller {
                 .departmentName("Tehnologia Informatiei")
                 .build();
 
-        return List.of(dispGrades1, dispGrades2, dispGrades3, dispGrades4, dispGrades5, dispGrades6, dispGrades7,dispGrades8
-                ,dispGrades9,dispGrades10);
+        //List.of(dispGrades1, dispGrades2, dispGrades3, dispGrades4, dispGrades5, dispGrades6, dispGrades7,dispGrades8
+        //                ,dispGrades9,dispGrades10)
+        note.add(dispGrades1);
+        note.add(dispGrades2);
+        note.add(dispGrades3);
+        note.add(dispGrades4);
+        note.add(dispGrades5);
+        note.add(dispGrades6);
+        note.add(dispGrades7);
+        note.add(dispGrades8);
+        note.add(dispGrades9);
+        note.add(dispGrades10);
+        return note;
     }
 
     private List<Discipline> dispSubjects() {
