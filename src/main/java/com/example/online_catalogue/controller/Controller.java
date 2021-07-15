@@ -64,7 +64,7 @@ public class Controller {
     public ModelAndView submitRegister(@ModelAttribute User utilizator){
         ModelAndView mav = new ModelAndView();
 
-        if(utilizator.getParola().equals(utilizator.getCnfParola())) {
+        if(utilizator.notNull()){
             utilizatori.add(utilizator);
             mav.setViewName("redirect:/login");
         }

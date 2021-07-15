@@ -40,7 +40,8 @@
     </style>
     <!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css" media="all" th:href="@{/sbadmin/css/sidebar.css}">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -182,7 +183,10 @@
     <!--  Main Content End  -->
 </div>
 
-<script th:src="@{/sbadmin/js/scripts.js}"></script>
+    <script th:src="@{/sbadmin/js/scripts.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+    <script th:src="@{/sbadmin/js/datatables-simple-demo.js}"></script>
 
 </body>
 </html>

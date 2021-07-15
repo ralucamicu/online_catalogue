@@ -14,4 +14,27 @@ public class User {
     private String prenume;
     private String parola;
     private String cnfParola;
+
+    public boolean notNull(){
+        if(email.equals("")){
+            return false;
+        }
+        if(nume.equals("")){
+            return false;
+        }
+        if(prenume.equals("")){
+            return false;
+        }
+        if(parola.equals("")){
+            return false;
+        }
+        if(cnfParola.equals("")){
+            return false;
+        }
+        if(!(parola.equals(cnfParola))){
+            return false;
+        }
+
+        return true;
+    }
 }
