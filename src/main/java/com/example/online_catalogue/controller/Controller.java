@@ -14,6 +14,7 @@ public class Controller {
 
     List<User> utilizatori = getUtilizatori();
     List<Note> note = dispGrades();
+    List<Discipline> disciplina = dispSubjects();
 
     private List<User> getUtilizatori (){
         List<User> utilizatori = new ArrayList<>();
@@ -148,14 +149,35 @@ public class Controller {
         List<String> nameDiscList = List.of("Electronica Digitala", "PCLP", "Proiectarea Algoritmilor", "Informatica Aplicata");
         model.addAttribute("nameDiscList", nameDiscList);
 
-        List<Discipline> discipline = dispSubjects();
-        model.addAttribute("discipline", discipline);
+        model.addAttribute("disciplina", disciplina);
 
 
         mav.setViewName("courses");
 
         return mav;
 
+    }
+
+    @GetMapping(value = "/addCourses")
+    public ModelAndView addCourses(Model model){
+        ModelAndView mav = new ModelAndView();
+
+        Discipline discipline = new Discipline();
+        model.addAttribute("discipline",discipline);
+
+        mav.setViewName("addCourses");
+        return mav;
+    }
+
+    @PostMapping(value = "/submitCourses")
+    public ModelAndView submitCourses(@ModelAttribute Discipline discipline){
+        ModelAndView mav = new ModelAndView();
+
+        discipline.setID(disciplina.size()+1);
+        disciplina.add(discipline);
+
+        mav.setViewName("redirect:/courses");
+        return mav;
     }
 
     private List<Note> dispGrades() {
@@ -256,6 +278,7 @@ public class Controller {
     }
 
     private List<Discipline> dispSubjects() {
+        List<Discipline> disciplina = new ArrayList<>();
         Discipline dispSubjects1 = Discipline.builder()
                 .iD(001)
                 .numeDisc("Electronica Digitala")
@@ -317,8 +340,17 @@ public class Controller {
                 .an("VI")
                 .credite(3)
                 .build();
-        return List.of(dispSubjects1, dispSubjects2, dispSubjects3, dispSubjects4, dispSubjects5, dispSubjects6, dispSubjects7,
-                dispSubjects8, dispSubjects9, dispSubjects10);
+        disciplina.add(dispSubjects1);
+        disciplina.add(dispSubjects2);
+        disciplina.add(dispSubjects3);
+        disciplina.add(dispSubjects4);
+        disciplina.add(dispSubjects5);
+        disciplina.add(dispSubjects6);
+        disciplina.add(dispSubjects7);
+        disciplina.add(dispSubjects8);
+        disciplina.add(dispSubjects9);
+        disciplina.add(dispSubjects10);
+        return disciplina;
     }
 
 }
