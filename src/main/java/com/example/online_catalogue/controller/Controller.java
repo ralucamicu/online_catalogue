@@ -1,5 +1,11 @@
 package com.example.online_catalogue.controller;
 
+import com.example.online_catalogue.entity.Discipline;
+import com.example.online_catalogue.entity.Note;
+import com.example.online_catalogue.entity.User;
+import com.example.online_catalogue.service.UserService;
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,19 +18,18 @@ import java.util.List;
 @org.springframework.stereotype.Controller
 public class Controller {
 
-    List<User> utilizatori = getUtilizatori();
+    @Autowired
+    UserService userService;
+
     List<Note> note = dispGrades();
     List<Discipline> disciplina = dispSubjects();
 
-    private List<User> getUtilizatori (){
-        List<User> utilizatori = new ArrayList<>();
-        utilizatori.add(User.builder().nume("maroiu").prenume("alex").email("alex@mail.com").parola("pass").build());
-        return utilizatori;
-    }
 
     @GetMapping(value = "/login")
     public ModelAndView login(Model model) {
         ModelAndView mav = new ModelAndView();
+
+        System.out.println(new User.Inregistrare().getCnfParola());
 
         User utilizator = new User();
         model.addAttribute("user",utilizator);
@@ -36,6 +41,9 @@ public class Controller {
     @PostMapping(value = "/submitLogin")
     public ModelAndView submitLogin(@ModelAttribute User utilizator){
         ModelAndView mav = new ModelAndView();
+
+        var utilizatori = userService.getUsers();
+
 
         for(var user : utilizatori){
            if(user.getParola().equals(utilizator.getParola()) && user.getEmail().equals(utilizator.getEmail())){
@@ -53,7 +61,7 @@ public class Controller {
     public ModelAndView register(Model model){
         ModelAndView mav = new ModelAndView();
 
-        User utilizator = User.builder().build();
+        User.Inregistrare utilizator = new User.Inregistrare();
         model.addAttribute("utilizator",utilizator);
 
         mav.setViewName("register");
@@ -61,11 +69,12 @@ public class Controller {
     }
 
     @PostMapping(value = "/submitRegister")
-    public ModelAndView submitRegister(@ModelAttribute User utilizator){
+    public ModelAndView submitRegister(@ModelAttribute User.Inregistrare utilizator){
         ModelAndView mav = new ModelAndView();
 
         if(utilizator.notNull()){
-            utilizatori.add(utilizator);
+            //utilizatori.add(utilizator);
+            userService.saveUser(utilizator.getUser());
             mav.setViewName("redirect:/login");
         }
         else{

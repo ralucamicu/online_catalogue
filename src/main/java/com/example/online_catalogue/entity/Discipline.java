@@ -1,4 +1,4 @@
-package com.example.online_catalogue.controller;
+package com.example.online_catalogue.entity;
 
 import lombok.*;
 
