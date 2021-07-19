@@ -3,6 +3,7 @@ package com.example.online_catalogue.controller;
 import com.example.online_catalogue.entity.Discipline;
 import com.example.online_catalogue.entity.Note;
 import com.example.online_catalogue.entity.User;
+import com.example.online_catalogue.service.DisciplineService;
 import com.example.online_catalogue.service.UserService;
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,14 @@ public class Controller {
     @Autowired
     UserService userService;
 
+    @Autowired
+    DisciplineService disciplineService;
+
     List<Note> note = dispGrades();
-    List<Discipline> disciplina = dispSubjects();
 
 
+
+    //Login
     @GetMapping(value = "/login")
     public ModelAndView login(Model model) {
         ModelAndView mav = new ModelAndView();
@@ -37,7 +42,6 @@ public class Controller {
         mav.setViewName("login");
         return mav;
     }
-
     @PostMapping(value = "/submitLogin")
     public ModelAndView submitLogin(@ModelAttribute User utilizator){
         ModelAndView mav = new ModelAndView();
@@ -56,7 +60,11 @@ public class Controller {
 
         return mav;
     }
+    //End Login
 
+
+
+    //Register
     @GetMapping(value = "/register")
     public ModelAndView register(Model model){
         ModelAndView mav = new ModelAndView();
@@ -67,7 +75,6 @@ public class Controller {
         mav.setViewName("register");
         return mav;
     }
-
     @PostMapping(value = "/submitRegister")
     public ModelAndView submitRegister(@ModelAttribute User.Inregistrare utilizator){
         ModelAndView mav = new ModelAndView();
@@ -82,14 +89,22 @@ public class Controller {
         }
         return mav;
     }
+    //End register
 
+
+
+    //Recuperare
     @GetMapping(value = "/recuperare")
     public ModelAndView password(Model model){
         ModelAndView mav = new ModelAndView();
         mav.setViewName("password");
         return mav;
     }
+    //End recuperare
 
+
+
+    //Adaugare de note
     @GetMapping(value = "/grades")
     public ModelAndView viewGrades(Model model) {
         ModelAndView mav = new ModelAndView();
@@ -104,8 +119,7 @@ public class Controller {
         mav.setViewName("displayNote");
         return mav;
     }
-
-    @GetMapping(value = "/addNote")
+        @GetMapping(value = "/addNote")
     public ModelAndView addNote(Model model){
         ModelAndView mav = new ModelAndView();
 
@@ -115,7 +129,6 @@ public class Controller {
         mav.setViewName("addNote");
         return mav;
     }
-
     @PostMapping(value = "/submitNota")
     public ModelAndView submitNota(@ModelAttribute Note nota){
         ModelAndView mav = new ModelAndView();
@@ -126,29 +139,11 @@ public class Controller {
         mav.setViewName("redirect:/grades");
         return mav;
     }
-
-    @GetMapping(value = "/index")
-    public ModelAndView home(Model model){
-        ModelAndView mav = new ModelAndView();
+    //End Adaugare de note
 
 
 
-        mav.setViewName("index");
-        return mav;
-
-    }
-
-    @GetMapping(value = "/exams")
-    public ModelAndView exams(Model model){
-        ModelAndView mav = new ModelAndView();
-
-
-
-        mav.setViewName("exams");
-        return mav;
-
-    }
-
+    //Adaugare de discipline
     @GetMapping(value = "/courses")
     public ModelAndView courses(Model model){
         ModelAndView mav = new ModelAndView();
@@ -158,15 +153,14 @@ public class Controller {
         List<String> nameDiscList = List.of("Electronica Digitala", "PCLP", "Proiectarea Algoritmilor", "Informatica Aplicata");
         model.addAttribute("nameDiscList", nameDiscList);
 
+        List<Discipline> disciplina = disciplineService.getDiscipline();
         model.addAttribute("disciplina", disciplina);
 
 
         mav.setViewName("courses");
 
         return mav;
-
     }
-
     @GetMapping(value = "/addCourses")
     public ModelAndView addCourses(Model model){
         ModelAndView mav = new ModelAndView();
@@ -177,17 +171,47 @@ public class Controller {
         mav.setViewName("addCourses");
         return mav;
     }
-
     @PostMapping(value = "/submitCourses")
     public ModelAndView submitCourses(@ModelAttribute Discipline discipline){
         ModelAndView mav = new ModelAndView();
 
-        discipline.setID(disciplina.size()+1);
-        disciplina.add(discipline);
+
+//        List<Discipline> disciplina = disciplineService.getDiscipline();
+//        discipline.setCod_disciplina(disciplina.size()+1);
+//        disciplina.add(discipline);
+
+        disciplineService.saveDisciplineToDatabase(discipline);
 
         mav.setViewName("redirect:/courses");
         return mav;
     }
+    //End Adaugare de discipline
+
+
+
+    //Home page
+    @GetMapping(value = "/index")
+    public ModelAndView home(Model model){
+        ModelAndView mav = new ModelAndView();
+
+        mav.setViewName("index");
+        return mav;
+    }
+    //End Home page
+
+
+
+    //Adaugare de examene
+    @GetMapping(value = "/exams")
+    public ModelAndView exams(Model model){
+        ModelAndView mav = new ModelAndView();
+
+        mav.setViewName("exams");
+        return mav;
+    }
+    //End Adaugare de examene
+
+
 
     private List<Note> dispGrades() {
         List<Note> note = new ArrayList<>();
@@ -195,7 +219,7 @@ public class Controller {
                 .id(001)
                 .discName("Electronica Digitala")
                 .nota(6)
-                .promovat("Promovat")
+                .situatie("Promovat")
                 .departmentName("Tehnologia Informatiei")
                 .build();
 
@@ -203,7 +227,7 @@ public class Controller {
                 .id(002)
                 .discName("Baze de date")
                 .nota(9)
-                .promovat("Promovat")
+                .situatie("Promovat")
                 .departmentName("Tehnologia Informatiei")
                 .build();
 
@@ -211,7 +235,7 @@ public class Controller {
                 .id(003)
                 .discName("POO")
                 .nota(10)
-                .promovat("Promovat")
+                .situatie("Promovat")
                 .departmentName("Tehnologia Informatiei")
                 .build();
 
@@ -219,7 +243,7 @@ public class Controller {
                 .id(004)
                 .discName("Teoria sistemelor")
                 .nota(8)
-                .promovat("Promovat")
+                .situatie("Promovat")
                 .departmentName("Tehnologia Informatiei")
                 .build();
 
@@ -227,7 +251,7 @@ public class Controller {
                 .id(005)
                 .discName("Elemente de grafica pe calculator")
                 .nota(10)
-                .promovat("Promovat")
+                .situatie("Promovat")
                 .departmentName("Tehnologia Informatiei")
                 .build();
 
@@ -235,7 +259,7 @@ public class Controller {
                 .id(006)
                 .discName("Elemente de grafica pe calculator")
                 .nota(10)
-                .promovat("Promovat")
+                .situatie("Promovat")
                 .departmentName("Tehnologia Informatiei")
                 .build();
 
@@ -243,7 +267,7 @@ public class Controller {
                 .id(007)
                 .discName("Procesarea semnalelor")
                 .nota(7)
-                .promovat("Promovat")
+                .situatie("Promovat")
                 .departmentName("Tehnologia Informatiei")
                 .build();
 
@@ -251,7 +275,7 @@ public class Controller {
                 .id(8)
                 .discName("Limba engleza")
                 .nota(5)
-                .promovat("Promovat")
+                .situatie("Promovat")
                 .departmentName("Tehnologia Informatiei")
                 .build();
 
@@ -259,7 +283,7 @@ public class Controller {
                 .id(9)
                 .discName("Proiectarea algoritmilor")
                 .nota(4)
-                .promovat("Nepromovat")
+                .situatie("Nepromovat")
                 .departmentName("Tehnologia Informatiei")
                 .build();
 
@@ -267,12 +291,10 @@ public class Controller {
                 .id(10)
                 .discName("Structuri de date si algoritmi")
                 .nota(10)
-                .promovat("Promovat")
+                .situatie("Promovat")
                 .departmentName("Tehnologia Informatiei")
                 .build();
 
-        //List.of(dispGrades1, dispGrades2, dispGrades3, dispGrades4, dispGrades5, dispGrades6, dispGrades7,dispGrades8
-        //                ,dispGrades9,dispGrades10)
         note.add(dispGrades1);
         note.add(dispGrades2);
         note.add(dispGrades3);
@@ -284,82 +306,6 @@ public class Controller {
         note.add(dispGrades9);
         note.add(dispGrades10);
         return note;
-    }
-
-    private List<Discipline> dispSubjects() {
-        List<Discipline> disciplina = new ArrayList<>();
-        Discipline dispSubjects1 = Discipline.builder()
-                .iD(001)
-                .numeDisc("Electronica Digitala")
-                .an("IV")
-                .credite(5)
-                .build();
-
-        Discipline dispSubjects2 = Discipline.builder()
-                .iD(2)
-                .numeDisc("Electronica Digitala")
-                .an("II")
-                .credite(4)
-                .build();
-        Discipline dispSubjects3 = Discipline.builder()
-                .iD(3)
-                .numeDisc("Electronica Digitala")
-                .an("II")
-                .credite(5)
-                .build();
-        Discipline dispSubjects4 = Discipline.builder()
-                .iD(4)
-                .numeDisc("Electronica Digitala")
-                .an("I")
-                .credite(6)
-                .build();
-        Discipline dispSubjects5 = Discipline.builder()
-                .iD(5)
-                .numeDisc("Electronica Digitala")
-                .an("V")
-                .credite(6)
-                .build();
-        Discipline dispSubjects6 = Discipline.builder()
-                .iD(6)
-                .numeDisc("Electronica Digitala")
-                .an("IV")
-                .credite(1)
-                .build();
-        Discipline dispSubjects7 = Discipline.builder()
-                .iD(7)
-                .numeDisc("Electronica Digitala")
-                .an("III")
-                .credite(4)
-                .build();
-        Discipline dispSubjects8 = Discipline.builder()
-                .iD(8)
-                .numeDisc("Electronica Digitala")
-                .an("I")
-                .credite(5)
-                .build();
-        Discipline dispSubjects9 = Discipline.builder()
-                .iD(9)
-                .numeDisc("Electronica Digitala")
-                .an("II")
-                .credite(7)
-                .build();
-        Discipline dispSubjects10 = Discipline.builder()
-                .iD(10)
-                .numeDisc("Electronica Digitala")
-                .an("VI")
-                .credite(3)
-                .build();
-        disciplina.add(dispSubjects1);
-        disciplina.add(dispSubjects2);
-        disciplina.add(dispSubjects3);
-        disciplina.add(dispSubjects4);
-        disciplina.add(dispSubjects5);
-        disciplina.add(dispSubjects6);
-        disciplina.add(dispSubjects7);
-        disciplina.add(dispSubjects8);
-        disciplina.add(dispSubjects9);
-        disciplina.add(dispSubjects10);
-        return disciplina;
     }
 
 }

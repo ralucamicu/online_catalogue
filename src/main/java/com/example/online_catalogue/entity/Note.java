@@ -13,7 +13,7 @@ public class Note {
     private int id;
     private String discName;
     private int nota;
-    private String promovat;
+    private String situatie;
     private String departmentName;
 
 }

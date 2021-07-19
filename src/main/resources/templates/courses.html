@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>Acasa</title>
+    <title>Cursurile mele</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
 
@@ -160,6 +160,7 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Cod Disciplina</th>
                                     <th>Denumire Disciplina</th>
                                     <th>An</th>
                                     <th>Credite</th>
@@ -168,8 +169,9 @@
 
                                 <tbody>
                                 <tr th:each="showTable : ${disciplina}">
-                                    <td th:text="${showTable.iD}"/>
-                                    <td th:text="${showTable.numeDisc}"/>
+                                    <td th:text="${showTable.id}"/>
+                                    <td th:text="${showTable.cod_disciplina}"/>
+                                    <td th:text="${showTable.nume_disciplina}"/>
                                     <td th:text="${showTable.an}"/>
                                     <td th:text="${showTable.credite}"/>
                                 </tr>

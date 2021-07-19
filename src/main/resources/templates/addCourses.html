@@ -93,7 +93,11 @@
                         <div class="card-body">
                             <form th:action="@{/submitCourses}" method="post" th:object="${discipline}">
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="inputMaterie" type="text" placeholder="Materie" th:field="${discipline.numeDisc}"/>
+                                    <input class="form-control" id="inputCodDiscipllina" type="text" placeholder="Cod_disciplina" th:field="${discipline.cod_disciplina}"/>
+                                    <label for="inputMaterie">Cod Disciplina</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" id="inputMaterie" type="text" placeholder="Materie" th:field="${discipline.nume_disciplina}"/>
                                     <label for="inputMaterie">Materie</label>
                                 </div>
                                 <div class="form-floating mb-3">
