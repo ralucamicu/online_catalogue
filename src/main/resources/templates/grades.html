@@ -147,7 +147,8 @@
                                         <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>Disciplina</th>
+                                            <th>Cod Disciplina</th>
+                                            <th>Denumire Disciplina</th>
                                             <th>Nota</th>
                                             <th>Situatie</th>
                                             <th>Departament</th>
@@ -155,12 +156,13 @@
                                         </thead>
 
                                         <tbody>
-                                        <tr th:each="showTable : ${note}">
-                                            <td th:text="${showTable.id}"/>
-                                            <td th:text="${showTable.discName}"/>
+                                        <tr th:each="showTable : ${nota}">
+                                            <td th:text="${showTable.Id}"/>
+                                            <td th:text="${showTable.cod_disciplina}"/>
+                                            <td th:text="${showTable.nume_disciplina}"/>
                                             <td th:text="${showTable.nota}"/>
                                             <td th:text="${showTable.situatie}"/>
-                                            <td th:text="${showTable.departmentName}"/>
+                                            <td th:text="${showTable.departament}"/>
                                         </tr>
                                         </tbody>
                                     </table>

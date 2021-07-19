@@ -14,14 +14,13 @@ create table cursuri(
     credite integer(50),
     primary key(id,cod_disciplina)
 );
---
---create table note(
---    Id integer auto_increment,
---    cod_disciplina varchar(50) REFERENCES cursuri(cod_disciplina),
---    id integer auto_increment REFERENCES studenti(id),
---    nume_disciplina varchar(50) REFERENCES cursuri(nume_disciplina),
---    nota integer(50),
---    situatie varchar(50),
---    departament varchar(50),
---    primary key(Id)
---);
+
+create table note(
+    Id integer auto_increment,
+    cod_disciplina integer,
+    nume_disciplina varchar(50),
+    nota integer(50),
+    situatie varchar(50),
+    departament varchar(50),
+    primary key(Id,cod_disciplina)
+);
