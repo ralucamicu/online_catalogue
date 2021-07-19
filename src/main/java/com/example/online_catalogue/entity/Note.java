@@ -24,8 +24,8 @@ public class Note {
     @Column(name = "cod_disciplina")
     private int cod_disciplina;
 
-    @Column(name = "nume_disciplina")
-    private String nume_disciplina;
+    @Column(name = "cod_student")
+    private int codStudent;
 
     @Column(name = "nota")
     private int nota;

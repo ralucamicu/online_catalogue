@@ -95,12 +95,12 @@
                             <div class="card-body">
                                 <form th:action="@{/submitNota}" method="post" th:object="${note}">
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="inputCodDisciplina" type="text" placeholder="Cod_disciplina" th:field="${note.cod_disciplina}"/>
-                                        <label for="inputMaterie">Cod Disciplina</label>
+                                        <input class="form-control" id="inputCodDisciplina" type="number" placeholder="Cod_disciplina" th:field="${note.cod_disciplina}"/>
+                                        <label for="inputCodDisciplina">Cod Disciplina</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="inputMaterie" type="text" placeholder="Materie" th:field="${note.nume_disciplina}"/>
-                                        <label for="inputMaterie">Materie</label>
+                                        <input class="form-control" id="inputIdStudent" type="text" placeholder="Id student" th:field="${note.codStudent}"/>
+                                        <label for="inputIdStudent">Id student</label>
                                     </div>
                                     <div class="form-floating mb-3">
                                         <input class="form-control" id="inputNota" type="number" placeholder="Nota" th:field="${note.nota}"/>

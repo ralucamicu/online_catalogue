@@ -51,13 +51,11 @@ public class Controller {
 
         var utilizatori = userService.getUsers();
 
+        mav.setViewName("redirect:/login");
 
         for(var user : utilizatori){
            if(user.getParola().equals(utilizator.getParola()) && user.getEmail().equals(utilizator.getEmail())){
                mav.setViewName("redirect:/index");
-           }
-           else{
-               mav.setViewName("redirect:/login");
            }
         }
 

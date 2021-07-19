@@ -10,9 +10,9 @@ insert into cursuri(cod_disciplina, nume_disciplina, an, credite) values
     (114, 'Programarea Algoritmilor', 'II', 3),
     (115, 'Programare Logica si Functionala', 'II', 2);
 
-insert into note(cod_disciplina, nume_disciplina, nota, situatie, departament) values
-    (111, 'Electronica Digitala', 7, 'Promovat', 'Tehnologia Informatiei'),
-    (112, 'Programare Orientata pe Obiect', 10, 'Promovat', 'Tehnologia Informatiei'),
-    (113, 'Elemente de Grafica pe Calculator', 4, 'Nepromovat', 'Tehnologia Informatiei'),
-    (114, 'Programarea Algoritmilor', 8, 'Promovat', 'Tehnologia Informatiei'),
-    (115, 'Programare Logica si Functionala', 10, 'Promovat', 'Tehnologia Informatiei');
+insert into note(cod_disciplina, cod_student, nota, situatie, departament) values
+    (111, 1, 7, 'Promovat', 'Tehnologia Informatiei'),
+    (112, 1, 10, 'Promovat', 'Tehnologia Informatiei'),
+    (113, 2, 4, 'Nepromovat', 'Tehnologia Informatiei'),
+    (114, 2, 8, 'Promovat', 'Tehnologia Informatiei'),
+    (115, 3, 10, 'Promovat', 'Tehnologia Informatiei');

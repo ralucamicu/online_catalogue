@@ -17,10 +17,10 @@ create table cursuri(
 
 create table note(
     Id integer auto_increment,
-    cod_disciplina integer,
-    nume_disciplina varchar(50),
+    cod_disciplina integer references cursuri(cod_disciplina),
+    cod_student integer references studenti(id),
     nota integer(50),
     situatie varchar(50),
     departament varchar(50),
-    primary key(Id,cod_disciplina)
+    primary key(Id)
 );
