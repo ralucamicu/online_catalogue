@@ -1,10 +1,12 @@
 package com.example.online_catalogue.controller;
 
 import com.example.online_catalogue.entity.Discipline;
+import com.example.online_catalogue.entity.Examene;
 import com.example.online_catalogue.entity.Note;
 import com.example.online_catalogue.entity.User;
 import com.example.online_catalogue.repository.NoteRepository;
 import com.example.online_catalogue.service.DisciplineService;
+import com.example.online_catalogue.service.ExameneService;
 import com.example.online_catalogue.service.NoteService;
 import com.example.online_catalogue.service.UserService;
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
@@ -29,6 +31,9 @@ public class Controller {
 
     @Autowired
     NoteService noteService;
+
+    @Autowired
+    ExameneService exameneService;
 
 
 
@@ -192,7 +197,29 @@ public class Controller {
     public ModelAndView exams(Model model){
         ModelAndView mav = new ModelAndView();
 
+        List<Examene> examen = exameneService.getExamene();
+        model.addAttribute("examen", examen);
+
         mav.setViewName("exams");
+        return mav;
+    }
+    @GetMapping(value = "/addExams")
+    public ModelAndView addExams(Model model){
+        ModelAndView mav = new ModelAndView();
+
+        Examene examene = new Examene();
+        model.addAttribute("examene",examene);
+
+        mav.setViewName("addExams");
+        return mav;
+    }
+    @PostMapping(value = "/submitExams")
+    public ModelAndView submitExams(@ModelAttribute Examene examene){
+        ModelAndView mav = new ModelAndView();
+
+        exameneService.saveExameneToDatabase(examene);
+
+        mav.setViewName("redirect:/exams");
         return mav;
     }
     //End Adaugare de examene

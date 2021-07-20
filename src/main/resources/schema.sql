@@ -24,3 +24,12 @@ create table note(
     departament varchar(50),
     primary key(Id)
 );
+
+create table examene(
+    id integer auto_increment,
+    cod_disciplina varchar(50),
+    nume_disciplina varchar(50),
+    data varchar(50),
+    ora varchar(50),
+    primary key(cod_disciplina)
+);

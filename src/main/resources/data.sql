@@ -16,3 +16,6 @@ insert into note(cod_disciplina, cod_student, nota, situatie, departament) value
     (113, 2, 4, 'Nepromovat', 'Tehnologia Informatiei'),
     (114, 2, 8, 'Promovat', 'Tehnologia Informatiei'),
     (115, 3, 10, 'Promovat', 'Tehnologia Informatiei');
+--
+--insert into examene(cod_disciplina,nume_disciplina,data,ora) values
+--    (114, 'Programarea Algoritmilor', '14/06/2005', '9:00');
