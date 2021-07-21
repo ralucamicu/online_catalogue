@@ -92,11 +92,11 @@
                             <div class="card-body">
                                 <form th:action="@{/submitNota}" method="post" th:object="${note}">
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="inputCodDisciplina" type="number" placeholder="Cod_disciplina" th:field="${note.cod_disciplina}"/>
+                                        <input class="form-control" id="inputCodDisciplina" type="text" placeholder="Cod_disciplina" th:field="${note.disciplina.cod_disciplina}"/>
                                         <label for="inputCodDisciplina">Cod Disciplina</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="inputIdStudent" type="text" placeholder="Id student" th:field="${note.codStudent}"/>
+                                        <input class="form-control" id="inputIdStudent" type="number" placeholder="Id student" th:field="${note.student.id}"/>
                                         <label for="inputIdStudent">Id student</label>
                                     </div>
                                     <div class="form-floating mb-3">

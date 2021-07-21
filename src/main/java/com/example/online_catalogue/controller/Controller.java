@@ -10,6 +10,7 @@ import com.example.online_catalogue.service.ExameneService;
 import com.example.online_catalogue.service.NoteService;
 import com.example.online_catalogue.service.UserService;
 import com.fasterxml.jackson.databind.annotation.JsonAppend;
+import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,7 +36,7 @@ public class Controller {
     @Autowired
     ExameneService exameneService;
 
-
+    User student;
 
     //Login
     @GetMapping(value = "/login")
@@ -51,7 +52,7 @@ public class Controller {
         return mav;
     }
     @PostMapping(value = "/submitLogin")
-    public ModelAndView submitLogin(@ModelAttribute User utilizator){
+    public ModelAndView submitLogin(@ModelAttribute User utilizator, Model model){
         ModelAndView mav = new ModelAndView();
 
         var utilizatori = userService.getUsers();
@@ -60,6 +61,8 @@ public class Controller {
 
         for(var user : utilizatori){
            if(user.getParola().equals(utilizator.getParola()) && user.getEmail().equals(utilizator.getEmail())){
+               //model.addAttribute("student", user);
+               student = user;
                mav.setViewName("redirect:/index");
            }
         }
@@ -101,7 +104,7 @@ public class Controller {
 
     //Recuperare
     @GetMapping(value = "/recuperare")
-    public ModelAndView password(Model model){
+    public ModelAndView password(){
         ModelAndView mav = new ModelAndView();
         mav.setViewName("password");
         return mav;
@@ -115,7 +118,12 @@ public class Controller {
     public ModelAndView viewGrades(Model model) {
         ModelAndView mav = new ModelAndView();
 
-        List<Note> nota = noteService.getNote();
+        if(student == null){
+            mav.setViewName("redirect:/login");
+            return mav;
+        }
+
+        List<Note> nota = userService.getUsers().get(student.getId()-1).getNote();
         model.addAttribute("nota", nota);
 
         mav.setViewName("grades");

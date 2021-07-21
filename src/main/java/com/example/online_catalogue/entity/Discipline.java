@@ -1,10 +1,12 @@
 package com.example.online_catalogue.entity;
 
 import lombok.*;
+import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,11 +18,8 @@ import javax.persistence.Table;
 @Table(name = "cursuri")
 public class Discipline {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    private int id;
 
+    @Id
     @Column(name = "cod_disciplina")
     private int cod_disciplina;
 
@@ -32,4 +31,7 @@ public class Discipline {
 
     @Column(name = "credite")
     private int credite;
+
+    @OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL)
+    private List<Note> note;
 }

@@ -143,9 +143,7 @@
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Cod Disciplina</th>
-                                            <th>Cod Student</th>
+                                            <th>Nume Disciplina</th>
                                             <th>Nota</th>
                                             <th>Situatie</th>
                                             <th>Departament</th>
@@ -154,9 +152,7 @@
 
                                         <tbody>
                                         <tr th:each="showTable : ${nota}">
-                                            <td th:text="${showTable.Id}"/>
-                                            <td th:text="${showTable.cod_disciplina}"/>
-                                            <td th:text="${showTable.codStudent}"/>
+                                            <td th:text="${showTable.disciplina.nume_disciplina}"/>
                                             <td th:text="${showTable.nota}"/>
                                             <td th:text="${showTable.situatie}"/>
                                             <td th:text="${showTable.departament}"/>

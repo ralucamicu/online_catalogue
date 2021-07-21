@@ -153,7 +153,6 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
                                     <th>Cod Disciplina</th>
                                     <th>Denumire Disciplina</th>
                                     <th>An</th>
@@ -163,7 +162,6 @@
 
                                 <tbody>
                                 <tr th:each="showTable : ${disciplina}">
-                                    <td th:text="${showTable.id}"/>
                                     <td th:text="${showTable.cod_disciplina}"/>
                                     <td th:text="${showTable.nume_disciplina}"/>
                                     <td th:text="${showTable.an}"/>

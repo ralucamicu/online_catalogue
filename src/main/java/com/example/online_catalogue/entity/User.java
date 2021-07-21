@@ -2,6 +2,7 @@ package com.example.online_catalogue.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Setter
 @Getter
@@ -25,6 +26,9 @@ public class User {
     private String prenume;
     @Column
     private String parola;
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private List<Note> note;
 
     @Setter
     @Getter

@@ -21,11 +21,13 @@ public class Note {
     @Column(name = "Id")
     private int Id;
 
-    @Column(name = "cod_disciplina")
-    private int cod_disciplina;
+    @ManyToOne
+    @JoinColumn(name = "cod_disciplina")
+    private Discipline disciplina;
 
-    @Column(name = "cod_student")
-    private int codStudent;
+    @ManyToOne
+    @JoinColumn(name="cod_student")
+    private User student;
 
     @Column(name = "nota")
     private int nota;
