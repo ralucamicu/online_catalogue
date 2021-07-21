@@ -147,6 +147,7 @@
                                             <th>Nota</th>
                                             <th>Situatie</th>
                                             <th>Departament</th>
+                                            <th>Edit</th>
                                         </tr>
                                         </thead>
 
@@ -156,6 +157,12 @@
                                             <td th:text="${showTable.nota}"/>
                                             <td th:text="${showTable.situatie}"/>
                                             <td th:text="${showTable.departament}"/>
+                                            <td>
+                                                <form method="POST" th:action="@{/editGrades}" th:object="${showTable}">
+                                                    <button class="btn btn-primary" type="submit">Edit</button>
+                                                    <input name="id_nota" th:value="${showTable.Id}" style="visibility: hidden;">
+                                                </form>
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>

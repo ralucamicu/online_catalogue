@@ -157,6 +157,7 @@
                                     <th>Denumire Disciplina</th>
                                     <th>An</th>
                                     <th>Credite</th>
+                                    <th>Edit</th>
                                 </tr>
                                 </thead>
 
@@ -166,6 +167,12 @@
                                     <td th:text="${showTable.nume_disciplina}"/>
                                     <td th:text="${showTable.an}"/>
                                     <td th:text="${showTable.credite}"/>
+                                    <td>
+                                        <form method="POST" th:action="@{/editCourses}" th:object="${showTable}">
+                                            <button class="btn btn-primary" type="submit">Edit</button>
+                                            <input name="cod_disciplina" th:value="${showTable.cod_disciplina}" style="visibility: hidden;">
+                                        </form>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>

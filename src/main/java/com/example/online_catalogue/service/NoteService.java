@@ -20,4 +20,8 @@ public class NoteService {
     public void saveNoteToDatabase(Note nota) {
         noteRepository.save(nota);
     }
+
+    public Note getNotaByID(Integer id){
+        return noteRepository.getById(id);
+    }
 }

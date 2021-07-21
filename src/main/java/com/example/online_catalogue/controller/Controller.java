@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -89,7 +90,6 @@ public class Controller {
         ModelAndView mav = new ModelAndView();
 
         if(utilizator.notNull()){
-            //utilizatori.add(utilizator);
             userService.saveUser(utilizator.getUser());
             mav.setViewName("redirect:/login");
         }
@@ -129,7 +129,8 @@ public class Controller {
         mav.setViewName("grades");
         return mav;
     }
-        @GetMapping(value = "/addNote")
+
+    @GetMapping(value = "/addNote")
     public ModelAndView addNote(Model model){
         ModelAndView mav = new ModelAndView();
 
@@ -139,6 +140,7 @@ public class Controller {
         mav.setViewName("addNote");
         return mav;
     }
+
     @PostMapping(value = "/submitNota")
     public ModelAndView submitNota(@ModelAttribute Note nota){
         ModelAndView mav = new ModelAndView();
@@ -146,6 +148,15 @@ public class Controller {
         noteService.saveNoteToDatabase(nota);
 
         mav.setViewName("redirect:/grades");
+        return mav;
+    }
+    @PostMapping(value = "/editGrades")
+    public ModelAndView editGrades(@RequestParam("id_nota") Integer id, Model model){
+        ModelAndView mav = new ModelAndView();
+
+        Note note = noteService.getNotaByID(id);
+        model.addAttribute("note",note);
+        mav.setViewName("addNote");
         return mav;
     }
     //End Adaugare de note
@@ -182,6 +193,16 @@ public class Controller {
         disciplineService.saveDisciplineToDatabase(discipline);
 
         mav.setViewName("redirect:/courses");
+        return mav;
+    }
+
+    @PostMapping(value = "/editCourses")
+    public ModelAndView editCourses(@RequestParam("cod_disciplina")Integer id, Model model){
+        ModelAndView mav = new ModelAndView();
+        Discipline discipline = disciplineService.getDisciplineById(id);
+
+        model.addAttribute("discipline",discipline);
+        mav.setViewName("addCourses");
         return mav;
     }
     //End Adaugare de discipline

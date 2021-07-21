@@ -91,6 +91,7 @@
                         <div class="card col-lg-6">
                             <div class="card-body">
                                 <form th:action="@{/submitNota}" method="post" th:object="${note}">
+                                    <input th:field="${note.Id}" style="visibility: hidden;">
                                     <div class="form-floating mb-3">
                                         <input class="form-control" id="inputCodDisciplina" type="text" placeholder="Cod_disciplina" th:field="${note.disciplina.cod_disciplina}"/>
                                         <label for="inputCodDisciplina">Cod Disciplina</label>
@@ -112,7 +113,7 @@
                                         <label for="inputDepartament">Departament</label>
                                     </div>
                                     <div>
-                                        <button class="btn btn-primary">Adauga nota</button>
+                                        <button class="btn btn-primary">Salveaza nota</button>
                                     </div>
 
                                 </form>

@@ -7,7 +7,7 @@ create table studenti(
 );
 
 create table cursuri(
-    cod_disciplina varchar(50),
+    cod_disciplina int,
     nume_disciplina varchar(50),
     an varchar(50),
     credite integer(50),
@@ -16,7 +16,7 @@ create table cursuri(
 
 create table note(
     Id integer auto_increment,
-    cod_disciplina varchar(50) references cursuri(cod_disciplina),
+    cod_disciplina int references cursuri(cod_disciplina),
     cod_student integer references studenti(id),
     nota integer(50),
     situatie varchar(50),

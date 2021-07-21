@@ -32,6 +32,8 @@ public class Discipline {
     @Column(name = "credite")
     private int credite;
 
+    /*
     @OneToMany(mappedBy = "disciplina", cascade = CascadeType.ALL)
     private List<Note> note;
+    */
 }
