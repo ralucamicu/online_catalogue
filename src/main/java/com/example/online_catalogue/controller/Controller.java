@@ -222,7 +222,12 @@ public class Controller {
     public ModelAndView exams(Model model){
         ModelAndView mav = new ModelAndView();
 
-        List<Examene> examen = exameneService.getExamene();
+        if(student == null){
+            mav.setViewName("redirect:/login");
+            return mav;
+        }
+
+        List<Examene> examen = userService.getUsers().get(student.getId()-1).getExamene();
         model.addAttribute("examen", examen);
 
         mav.setViewName("exams");
