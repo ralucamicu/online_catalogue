@@ -228,8 +228,6 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Cod Disciplina</th>
                                     <th>Denumire Disciplina</th>
                                     <th>Data</th>
                                     <th>Ora</th>
@@ -238,15 +236,14 @@
 
                                 <tbody>
                                 <tr th:each="showTable : ${examen}">
-                                    <td th:text="${showTable.id}"/>
-                                    <td th:text="${showTable.cod_disciplina}"/>
-                                    <td th:text="${showTable.nume_disciplina}"/>
+                                    <td th:text="${showTable.disciplina.nume_disciplina}"/>
+<!--                                    <td th:text="${showTable.nume_disciplina}"/>-->
                                     <td th:text="${showTable.data}"/>
                                     <td th:text="${showTable.ora}"/>
                                     <td>
                                         <form method="POST" th:action="@{/editExams}" th:object="${showTable}">
                                             <button class="btn btn-primary" type="submit">Edit</button>
-                                            <input name="cod_disciplina" th:value="${showTable.cod_disciplina}" style="visibility: hidden;">
+                                            <input name="id_examen" th:value="${showTable.id}" style="visibility: hidden;">
                                         </form>
                                     </td>
                                 </tr>

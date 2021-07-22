@@ -29,6 +29,8 @@ public class User {
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<Note> note;
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private List<Examene> examene;
 
     @Setter
     @Getter

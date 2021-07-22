@@ -21,8 +21,13 @@ public class Examene {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "cod_disciplina")
-    private int cod_disciplina;
+    @ManyToOne
+    @JoinColumn(name = "cod_disciplina")
+    private Discipline disciplina;
+
+    @ManyToOne
+    @JoinColumn(name="cod_student")
+    private User student;
 
     @Column(name = "nume_disciplina")
     private String nume_disciplina;

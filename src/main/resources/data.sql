@@ -17,5 +17,7 @@ insert into note(cod_disciplina, cod_student, nota, situatie, departament) value
     (114, 2, 8, 'Promovat', 'Tehnologia Informatiei'),
     (115, 3, 10, 'Promovat', 'Tehnologia Informatiei');
 
-insert into examene(cod_disciplina,nume_disciplina,data,ora) values
-    (114, 'Programarea Algoritmilor', '14/06/2005', '9:00');
+insert into examene(cod_disciplina,cod_student,nume_disciplina,data,ora) values
+    (114,1,'Programarea Algoritmilor', '14/06/2005', '9:00'),
+    (113,2,'Elemente de Grafica pe Calculator', '26/06/2005', '12:00'),
+    (115,3,'Programare Logica si Functionala', '26/06/2005', '14:00');

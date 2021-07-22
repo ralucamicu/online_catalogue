@@ -4,13 +4,10 @@ import com.example.online_catalogue.entity.Discipline;
 import com.example.online_catalogue.entity.Examene;
 import com.example.online_catalogue.entity.Note;
 import com.example.online_catalogue.entity.User;
-import com.example.online_catalogue.repository.NoteRepository;
 import com.example.online_catalogue.service.DisciplineService;
 import com.example.online_catalogue.service.ExameneService;
 import com.example.online_catalogue.service.NoteService;
 import com.example.online_catalogue.service.UserService;
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
-import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @org.springframework.stereotype.Controller
@@ -252,11 +248,12 @@ public class Controller {
         return mav;
     }
     @PostMapping(value = "/editExams")
-    public ModelAndView editExams(@RequestParam("cod_disciplina")Integer id, Model model){
+    public ModelAndView editExams(@RequestParam("id_examen")Integer id, Model model){
         ModelAndView mav = new ModelAndView();
-        Examene examene = exameneService.getExameneById(id);
 
+        Examene examene = exameneService.getExameneById(id);
         model.addAttribute("examene",examene);
+
         mav.setViewName("addExams");
         return mav;
     }
