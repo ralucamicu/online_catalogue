@@ -90,7 +90,7 @@
                 <div class="row justify-content-center">
                     <div class="card col-6">
                         <div class="card-body">
-                            <form th:action="@{/submitExams}" method="post" th:object="${discipline}">
+                            <form th:action="@{/submitExams}" method="post" th:object="${examene}">
                                 <div class="form-floating mb-3">
                                     <input class="form-control" id="inputCodDiscipllina" type="text" placeholder="Cod_disciplina" th:field="${examene.cod_disciplina}"/>
                                     <label for="inputMaterie">Cod Disciplina</label>
@@ -104,7 +104,7 @@
                                     <label for="inputData">Data</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="inputOra" type="text" placeholder="Ora" th:field="${exanene.ora}"/>
+                                    <input class="form-control" id="inputOra" type="text" placeholder="Ora" th:field="${examene.ora}"/>
                                     <label for="inputOra">Ora</label>
                                 </div>
                                 <div>

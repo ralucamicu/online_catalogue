@@ -251,6 +251,15 @@ public class Controller {
         mav.setViewName("redirect:/exams");
         return mav;
     }
+    @PostMapping(value = "/editExams")
+    public ModelAndView editExams(@RequestParam("cod_disciplina")Integer id, Model model){
+        ModelAndView mav = new ModelAndView();
+        Examene examene = exameneService.getExameneById(id);
+
+        model.addAttribute("examene",examene);
+        mav.setViewName("addExams");
+        return mav;
+    }
     //End Adaugare de examene
 
 

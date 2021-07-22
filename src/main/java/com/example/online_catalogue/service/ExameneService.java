@@ -23,4 +23,8 @@ public class ExameneService {
     public void saveExameneToDatabase(Examene examene) {
         exameneRepository.save(examene);
     }
+
+    public Examene getExameneById(Integer id){
+        return exameneRepository.getById(id);
+    }
 }

@@ -25,7 +25,7 @@ public class Examene {
     private int cod_disciplina;
 
     @Column(name = "nume_disciplina")
-    private int nume_disciplina;
+    private String nume_disciplina;
 
     @Column(name = "data")
     private String data;
