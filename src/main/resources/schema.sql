@@ -28,8 +28,7 @@ create table examene(
     id integer auto_increment,
     cod_disciplina int references cursuri(cod_disciplina),
     cod_student integer references studenti(id),
-    nume_disciplina varchar(50),
     data varchar(50),
     ora varchar(50),
-    primary key(cod_disciplina)
+    primary key(id)
 );

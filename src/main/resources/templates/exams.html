@@ -231,13 +231,13 @@
                                     <th>Denumire Disciplina</th>
                                     <th>Data</th>
                                     <th>Ora</th>
+                                    <th>Edit</th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
                                 <tr th:each="showTable : ${examen}">
                                     <td th:text="${showTable.disciplina.nume_disciplina}"/>
-<!--                                    <td th:text="${showTable.nume_disciplina}"/>-->
                                     <td th:text="${showTable.data}"/>
                                     <td th:text="${showTable.ora}"/>
                                     <td>

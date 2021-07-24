@@ -29,8 +29,10 @@ public class Examene {
     @JoinColumn(name="cod_student")
     private User student;
 
+    /*
     @Column(name = "nume_disciplina")
     private String nume_disciplina;
+     */
 
     @Column(name = "data")
     private String data;

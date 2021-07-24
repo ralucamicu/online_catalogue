@@ -49,7 +49,7 @@ public class Controller {
         return mav;
     }
     @PostMapping(value = "/submitLogin")
-    public ModelAndView submitLogin(@ModelAttribute User utilizator, Model model){
+    public ModelAndView submitLogin(@ModelAttribute User utilizator){
         ModelAndView mav = new ModelAndView();
 
         var utilizatori = userService.getUsers();
@@ -133,6 +133,11 @@ public class Controller {
         Note note = new Note();
         model.addAttribute("note",note);
 
+        List<User> studenti = userService.getUsers();
+        model.addAttribute("studentiNote",studenti);
+
+        model.addAttribute("discipline",disciplineService.getDiscipline());
+
         mav.setViewName("addNote");
         return mav;
     }
@@ -152,6 +157,10 @@ public class Controller {
 
         Note note = noteService.getNotaByID(id);
         model.addAttribute("note",note);
+
+        model.addAttribute("studentiNote", student);
+        model.addAttribute("discipline",note.getDisciplina());
+
         mav.setViewName("addNote");
         return mav;
     }
@@ -207,7 +216,7 @@ public class Controller {
 
     //Home page
     @GetMapping(value = "/index")
-    public ModelAndView home(Model model){
+    public ModelAndView home(){
         ModelAndView mav = new ModelAndView();
 
         mav.setViewName("index");
@@ -239,6 +248,8 @@ public class Controller {
 
         Examene examene = new Examene();
         model.addAttribute("examene",examene);
+        model.addAttribute("discipline",disciplineService.getDiscipline());
+        model.addAttribute("studentiExam",userService.getUsers());
 
         mav.setViewName("addExams");
         return mav;
@@ -258,6 +269,8 @@ public class Controller {
 
         Examene examene = exameneService.getExameneById(id);
         model.addAttribute("examene",examene);
+        model.addAttribute("discipline",examene.getDisciplina());
+        model.addAttribute("studentiExam",examene.getStudent());
 
         mav.setViewName("addExams");
         return mav;

@@ -93,18 +93,28 @@
                             <form th:action="@{/submitExams}" method="post" th:object="${examene}">
                                 <input th:field="${examene.id}" style="visibility: hidden;">
                                 <div class="form-floating mb-3">
-                                    <input class="form-control" id="inputCodDisciplina" type="text" placeholder="Cod_disciplina" th:field="${examene.disciplina.cod_disciplina}"/>
-                                    <label for="inputCodDisciplina">Cod Disciplina</label>
+                                    <select class="form-control" id="selectCodDisciplina" th:field="${examene.disciplina.cod_disciplina}">
+                                        <option th:each="disc : ${discipline}" th:value="${disc.cod_disciplina}" th:text="${disc.nume_disciplina}"></option>
+                                    </select>
+                                    <label for="selectCodDisciplina">Disciplina</label>
                                 </div>
                                 <div class="form-floating mb-3">
+                                    <!--
                                     <input class="form-control" id="inputIdStudent" type="number" placeholder="Id student" th:field="${examene.student.id}"/>
                                     <label for="inputIdStudent">Id student</label>
+                                    -->
+                                    <select class="form-control" id="selectIdStudent" th:field="${examene.student.id}">
+                                        <option th:each="stud : ${studentiExam}" th:value="${stud.id}" th:text="${stud.nume} + ' ' + ${stud.prenume}"></option>
+                                    </select>
+                                    <label for="selectIdStudent">Student</label>
                                 </div>
 
+                                <!--
                                 <div class="form-floating mb-3">
                                     <input class="form-control" id="inputNumeDisciplina" type="text" placeholder="Nume_Disciplina" th:field="${examene.nume_disciplina}"/>
                                     <label for="inputNumeDisciplina">Materie</label>
                                 </div>
+                                -->
                                 <div class="form-floating mb-3">
                                     <input class="form-control" id="inputData" type="text" placeholder="Data" th:field="${examene.data}"/>
                                     <label for="inputData">Data</label>

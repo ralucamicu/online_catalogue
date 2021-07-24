@@ -92,21 +92,31 @@
                             <div class="card-body">
                                 <form th:action="@{/submitNota}" method="post" th:object="${note}">
                                     <input th:field="${note.Id}" style="visibility: hidden;">
+
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="inputCodDisciplina" type="text" placeholder="Cod_disciplina" th:field="${note.disciplina.cod_disciplina}"/>
-                                        <label for="inputCodDisciplina">Cod Disciplina</label>
+                                        <select class="form-control" id="selectCodDisciplina" th:field="${note.disciplina.cod_disciplina}">
+                                            <option th:each="disc : ${discipline}" th:value="${disc.cod_disciplina}" th:text="${disc.nume_disciplina}"></option>
+                                        </select>
+                                        <label for="selectCodDisciplina">Materie</label>
                                     </div>
+
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="inputIdStudent" type="number" placeholder="Id student" th:field="${note.student.id}"/>
-                                        <label for="inputIdStudent">Id student</label>
+                                        <select class="form-control" id="selectIdStudent" th:field="${note.student.id}">
+                                            <option th:each="student : ${studentiNote}" th:value="${student.id}" th:text="${student.nume} + ' ' + ${student.prenume}"></option>
+                                        </select>
+                                        <label for="selectIdStudent" >Student</label>
                                     </div>
+
                                     <div class="form-floating mb-3">
                                         <input class="form-control" id="inputNota" type="number" placeholder="Nota" th:field="${note.nota}"/>
                                         <label for="inputNota">Nota</label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="inputSituatie" type="text" placeholder="Situatie" th:field="${note.situatie}"/>
-                                        <label for="inputSituatie">Situatie</label>
+                                        <select class="form-control" id="selectStiuatie" th:field="${note.situatie}">
+                                            <option value="Promovat">Promovat</option>
+                                            <option value="Nepromovat">Nepromovat</option>
+                                        </select>
+                                        <label for="selectStiuatie">Situatie</label>
                                     </div>
                                     <div class="form-floating mb-3">
                                         <input class="form-control" id="inputDepartament" type="text" placeholder="Departament" th:field="${note.departament}"/>
