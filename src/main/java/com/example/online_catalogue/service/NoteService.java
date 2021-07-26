@@ -24,4 +24,8 @@ public class NoteService {
     public Note getNotaByID(Integer id){
         return noteRepository.getById(id);
     }
+//
+//    public int deleteNotaByID(Integer id) {
+//        return noteRepository.deleteNoteByID(id);
+//    }
 }
