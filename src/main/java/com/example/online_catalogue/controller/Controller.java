@@ -12,10 +12,7 @@ import com.example.online_catalogue.service.NoteService;
 import com.example.online_catalogue.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -168,6 +165,7 @@ public class Controller {
         return mav;
     }
 //    @PostMapping(value = "/deleteGrades")
+    //@ResponseBody
 //    public ModelAndView deleteGrades(@RequestParam("id_nota") Integer id, Model model,final RedirectAttributes redirectAttributes){
 //        ModelAndView mav = new ModelAndView();
 //        AlertDTO alert;
