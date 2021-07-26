@@ -1,5 +1,7 @@
 package com.example.online_catalogue.controller;
 
+import com.example.online_catalogue.model.AlertDTO;
+import com.example.online_catalogue.model.AlertType;
 import com.example.online_catalogue.entity.Discipline;
 import com.example.online_catalogue.entity.Examene;
 import com.example.online_catalogue.entity.Note;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -164,6 +167,26 @@ public class Controller {
         mav.setViewName("addNote");
         return mav;
     }
+//    @PostMapping(value = "/deleteGrades")
+//    public ModelAndView deleteGrades(@RequestParam("id_nota") Integer id, Model model,final RedirectAttributes redirectAttributes){
+//        ModelAndView mav = new ModelAndView();
+//        AlertDTO alert;
+//
+//        int deletedNotaID = noteService.deleteNotaByID(id);
+//
+//        if (deletedNotaID != 0) {
+//            alert = new AlertDTO("Operation successful.", "The department was deleted.", AlertType.SUCCES);
+//        } else {
+//            alert = new AlertDTO("Error during department deletion.", "An error occured while trying to delete the department.", AlertType.ERROR);
+//        }
+//        model.addAttribute("deletedNotaID",deletedNotaID);
+//
+//        model.addAttribute("studentiNote", student);
+//
+//        mav.setViewName("grades");
+//        redirectAttributes.addFlashAttribute("alert", alert);
+//        return mav;
+//    }
     //End Adaugare de note
 
 

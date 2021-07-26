@@ -1,7 +1,5 @@
 package com.example.online_catalogue.service;
 
-import com.example.online_catalogue.entity.Discipline;
-import com.example.online_catalogue.controller.Controller;
 import com.example.online_catalogue.entity.Examene;
 import com.example.online_catalogue.repository.ExameneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
