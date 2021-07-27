@@ -15,7 +15,7 @@ public class SecurityController {
         public ModelAndView adminPage(Model model){
         ModelAndView mav = new ModelAndView();
 
-        mav.setViewName("redirect:/index");
+        mav.setViewName("redirect:/logare");
 
         return mav;
         }
