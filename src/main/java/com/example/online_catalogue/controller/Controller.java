@@ -36,8 +36,8 @@ public class Controller {
     User student;
 
     //Login
-    @GetMapping(value = "/login")
-    public ModelAndView login(Model model) {
+    @GetMapping(value = "/logare")
+    public ModelAndView logare(Model model) {
         ModelAndView mav = new ModelAndView();
 
         System.out.println(new User.Inregistrare().getCnfParola());
@@ -45,7 +45,7 @@ public class Controller {
         User utilizator = new User();
         model.addAttribute("user",utilizator);
 
-        mav.setViewName("login");
+        mav.setViewName("logare");
         return mav;
     }
     @PostMapping(value = "/submitLogin")
@@ -54,7 +54,7 @@ public class Controller {
 
         var utilizatori = userService.getUsers();
 
-        mav.setViewName("redirect:/login");
+        mav.setViewName("redirect:/logare");
 
         for(var user : utilizatori){
            if(user.getParola().equals(utilizator.getParola()) && user.getEmail().equals(utilizator.getEmail())){
@@ -87,7 +87,7 @@ public class Controller {
 
         if(utilizator.notNull()){
             userService.saveUser(utilizator.getUser());
-            mav.setViewName("redirect:/login");
+            mav.setViewName("redirect:/logare");
         }
         else{
             mav.setViewName("redirect:/register");
@@ -115,7 +115,7 @@ public class Controller {
         ModelAndView mav = new ModelAndView();
 
         if(student == null){
-            mav.setViewName("redirect:/login");
+            mav.setViewName("redirect:/logare");
             return mav;
         }
 
@@ -253,7 +253,7 @@ public class Controller {
         ModelAndView mav = new ModelAndView();
 
         if(student == null){
-            mav.setViewName("redirect:/login");
+            mav.setViewName("redirect:/logare");
             return mav;
         }
 

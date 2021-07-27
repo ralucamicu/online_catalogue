@@ -1,10 +1,25 @@
 create table studenti(
-    id integer auto_increment primary key,
+    id integer auto_increment,
     nume varchar(50),
     prenume varchar(50),
     email varchar(50),
-    parola varchar(50)
+    parola varchar(50),
+    primary key(id)
 );
+
+create table users(
+    username varchar(50) not null primary key,
+    password varchar(50) not null,
+    enabled boolean not null
+);
+
+create table authorities(
+    username varchar(50) not null,
+    authority varchar(50) not null,
+    constraint fk_authorities_users foreign key(username) references users(username)
+);
+
+create unique index ix_auth_username on authorities(username,authority);
 
 create table cursuri(
     cod_disciplina int,

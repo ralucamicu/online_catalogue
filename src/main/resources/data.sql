@@ -1,7 +1,18 @@
 insert into studenti(nume, prenume, email, parola) values
     ('maroiu', 'alex', 'alex@mail.com', 'pass'),
     ('maroiu','andrei', 'andrei@mail.com','pass'),
-    ('micu','raluca','raluca@mail.com','try123');
+    ('micu','raluca','raluca@mail.com','pass');
+
+
+insert into users(username, password ,enabled) values
+    ('alex','pass', 'true'),
+    ('andrei','pass', 'true'),
+    ('raluca','pass', 'true');
+
+insert into authorities(username,authority) values
+    ('alex','ROLE_ADMIN'),
+    ('andrei','ROLE_ADMIN'),
+    ('raluca','ROLE_ADMIN');
 
 insert into cursuri(cod_disciplina, nume_disciplina, an, credite) values
     (111, 'Electronica Digitala', 'II', 6),
