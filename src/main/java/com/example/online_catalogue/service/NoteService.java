@@ -5,6 +5,7 @@ import com.example.online_catalogue.repository.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -24,8 +25,8 @@ public class NoteService {
     public Note getNotaByID(Integer id){
         return noteRepository.getById(id);
     }
-//
-//    public int deleteNotaByID(Integer id) {
-//        return noteRepository.deleteNoteByID(id);
-//    }
+
+    @Transactional
+    public int deleteNotaById(Integer id) { return noteRepository.deleteNotaById(id);
+    }
 }

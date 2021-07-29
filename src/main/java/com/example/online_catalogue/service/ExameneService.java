@@ -25,4 +25,5 @@ public class ExameneService {
     public Examene getExameneById(Integer id){
         return exameneRepository.getById(id);
     }
+
 }

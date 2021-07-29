@@ -158,27 +158,20 @@ public class Controller {
         mav.setViewName("addNote");
         return mav;
     }
-//    @PostMapping(value = "/deleteGrades")
-    //@ResponseBody
-//    public ModelAndView deleteGrades(@RequestParam("id_nota") Integer id, Model model,final RedirectAttributes redirectAttributes){
-//        ModelAndView mav = new ModelAndView();
-//        AlertDTO alert;
-//
-//        int deletedNotaID = noteService.deleteNotaByID(id);
-//
-//        if (deletedNotaID != 0) {
-//            alert = new AlertDTO("Operation successful.", "The department was deleted.", AlertType.SUCCES);
-//        } else {
-//            alert = new AlertDTO("Error during department deletion.", "An error occured while trying to delete the department.", AlertType.ERROR);
-//        }
-//        model.addAttribute("deletedNotaID",deletedNotaID);
-//
-//        model.addAttribute("studentiNote", student);
-//
-//        mav.setViewName("grades");
-//        redirectAttributes.addFlashAttribute("alert", alert);
-//        return mav;
-//    }
+    @PostMapping(value = "/deleteGrades")
+    @ResponseBody
+    public ModelAndView deleteGrades(@RequestParam("id_nota") Integer id, Model model){
+        ModelAndView mav = new ModelAndView();
+
+        int deleteNotaById = noteService.deleteNotaById(id);
+        System.out.println("Deleted Employee ID " + deleteNotaById);
+
+        model.addAttribute("studentiNote", student);
+
+        mav.setViewName("redirect:/grades");
+        return mav;
+    }
+
     //End Adaugare de note
 
 
@@ -284,6 +277,7 @@ public class Controller {
         mav.setViewName("addExams");
         return mav;
     }
+
     //End Adaugare de examene
 
 
