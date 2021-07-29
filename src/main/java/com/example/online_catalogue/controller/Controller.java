@@ -11,6 +11,7 @@ import com.example.online_catalogue.service.ExameneService;
 import com.example.online_catalogue.service.NoteService;
 import com.example.online_catalogue.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,7 +41,6 @@ public class Controller {
     public ModelAndView logare(Model model) {
         ModelAndView mav = new ModelAndView();
 
-        System.out.println(new User.Inregistrare().getCnfParola());
 
         User utilizator = new User();
         model.addAttribute("user",utilizator);
@@ -111,15 +111,9 @@ public class Controller {
 
     //Adaugare de note
     @GetMapping(value = "/grades")
-    public ModelAndView viewGrades(Model model) {
+    public ModelAndView viewGrades(Model model, Authentication auth) {
         ModelAndView mav = new ModelAndView();
-
-        if(student == null){
-            mav.setViewName("redirect:/logare");
-            return mav;
-        }
-
-        List<Note> nota = userService.getUsers().get(student.getId()-1).getNote();
+        List<Note> nota = userService.getUserByUsername(auth.getName()).getNote();
         model.addAttribute("nota", nota);
 
         mav.setViewName("grades");
@@ -249,15 +243,9 @@ public class Controller {
 
     //Adaugare de examene
     @GetMapping(value = "/exams")
-    public ModelAndView exams(Model model){
+    public ModelAndView exams(Model model,Authentication auth){
         ModelAndView mav = new ModelAndView();
-
-        if(student == null){
-            mav.setViewName("redirect:/logare");
-            return mav;
-        }
-
-        List<Examene> examen = userService.getUsers().get(student.getId()-1).getExamene();
+        List<Examene> examen = userService.getUserByUsername(auth.getName()).getExamene();
         model.addAttribute("examen", examen);
 
         mav.setViewName("exams");

@@ -32,6 +32,10 @@ public class User {
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<Examene> examene;
 
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "username", nullable = false)
+    private Utilizator utilizator;
+
     @Setter
     @Getter
     @NoArgsConstructor

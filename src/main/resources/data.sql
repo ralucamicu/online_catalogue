@@ -1,13 +1,12 @@
-insert into studenti(nume, prenume, email, parola) values
-    ('maroiu', 'alex', 'alex@mail.com', 'pass'),
-    ('maroiu','andrei', 'andrei@mail.com','pass'),
-    ('micu','raluca','raluca@mail.com','pass');
-
-
 insert into users(username, password ,enabled) values
     ('alex','pass', 'true'),
     ('andrei','pass', 'true'),
     ('raluca','pass', 'true');
+
+insert into studenti(nume, prenume, email, parola,username) values
+    ('maroiu', 'alex', 'alex@mail.com', 'pass','alex'),
+    ('maroiu','andrei', 'andrei@mail.com','pass','andrei'),
+    ('micu','raluca','raluca@mail.com','pass','raluca');
 
 insert into authorities(username,authority) values
     ('alex','ROLE_ADMIN'),

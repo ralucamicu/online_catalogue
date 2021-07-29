@@ -1,16 +1,17 @@
+create table users(
+    username varchar(50) not null primary key,
+    password varchar(50) not null,
+    enabled boolean not null
+);
+
 create table studenti(
     id integer auto_increment,
     nume varchar(50),
     prenume varchar(50),
     email varchar(50),
     parola varchar(50),
+    username varchar(50) references users(username),
     primary key(id)
-);
-
-create table users(
-    username varchar(50) not null primary key,
-    password varchar(50) not null,
-    enabled boolean not null
 );
 
 create table authorities(
